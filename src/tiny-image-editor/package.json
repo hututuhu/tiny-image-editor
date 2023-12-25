@@ -1,0 +1,14 @@
+{
+  "name": "tiny-image-editor",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "index.js",
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "fabric": "^5.3.0",
+    "react-popper": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/fabric": "^5.3.6"
+  }
+}

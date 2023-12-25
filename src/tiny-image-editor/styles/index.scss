@@ -1,0 +1,336 @@
+.bre-image-editor {
+  // &_modal{
+
+  // }
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  height: 400px;
+
+  &_modal__wrapper{
+    flex-grow: 1;
+  }
+
+  &_target {
+    width: 100%;
+    height: 100%;
+    outline: none;
+  }
+
+  &_tool {
+    padding: 8px;
+    background-color: #e5e6e7;
+    border-radius: 4px 4px 0 0;
+  }
+
+  &_tool-item {
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    border-radius: 4px;
+    line-height: 1;
+  }
+
+  &_tool-item &_icon {
+    display: block;
+    width: 18px;
+    height: 18px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    opacity: 0.8;
+  }
+
+  &_tool-item &_icon:hover {
+    opacity: 1;
+  }
+
+
+  &_tool-item--disabled &_icon,
+  &_tool-item--disabled &_icon:hover{
+    opacity: .5;
+    cursor: not-allowed;
+  }
+
+  &_tool-crop &_icon {
+    background-image: url('../src/assets/crop.svg');
+  }
+
+  &_tool-flip &_icon {
+    background-image: url('../src/assets/flip.svg');
+  }
+
+  &_tool-flipX &_icon {
+    background-image: url('../src/assets/flipX.svg');
+  }
+
+  &_tool-flipY &_icon {
+    background-image: url('../src/assets/flipY.svg');
+  }
+
+  &_tool-rotate &_icon {
+    background-image: url('../src/assets/rotate.svg');
+  }
+
+  &_tool-draw &_icon {
+    background-image: url('../src/assets/draw.svg');
+  }
+
+  &_tool-circle &_icon {
+    background-image: url('../src/assets/circle.svg');
+  }
+
+  &_tool-rect &_icon {
+    background-image: url('../src/assets/rect.svg');
+  }
+
+  &_tool-undo &_icon {
+    background-image: url('../src/assets/undo.svg');
+  }
+
+  &_tool-redo &_icon {
+    background-image: url('../src/assets/redo.svg');
+  }
+
+  &_tool-text &_icon {
+    background-image: url('../src/assets/text.svg');
+  }
+  &_tool-upload &_icon {
+    position: relative;
+    background-image: url('../src/assets/upload.svg');
+  }
+  &_tool-download &_icon {
+    background-image: url('../src/assets/download.svg');
+  }
+
+  &_tool-hand &_icon {
+    background-image: url('../src/assets/hand.svg');
+  }
+
+  &_tool-zoomOut &_icon {
+    background-image: url('../src/assets/zoom-out.svg');
+  }
+
+  &_tool-zoomIn &_icon {
+    background-image: url('../src/assets/zoom-in.svg');
+  }
+
+  &_tool-arrow &_icon {
+    background-image: url('../src/assets/arrow.svg');
+  }
+
+  &_tool-mosaic &_icon {
+    background-image: url('../src/assets/mosaic.svg');
+  }
+
+  &_tool-reset &_icon {
+    background-image: url('../src/assets/reset.svg');
+  }
+
+  &_tool-history &_icon {
+    background-image: url('../src/assets/history.svg');
+  }
+
+  &_tool-upload &_input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    visibility: hidden;
+  }
+
+  &_tool-item &_icon--disabled,
+  &_tool-item &_icon--disabled:hover {
+    background-color: #ccc;
+    cursor: not-allowed;
+    border-radius: 2px;
+    opacity: 0.5;
+  }
+
+  &_tool-item--checked {
+    // content: '';
+    // z-index: -1;
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    // display: block;
+    // width: 24px;
+    // height: 24px;
+    background-color: #ffffff;
+  }
+
+  &_color-popover {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &_color {
+    width: 20px;
+    height: 20px;
+  }
+
+  &_tool-reset,
+  &_tool-upload,
+  &_tool-download,
+  &_tool-zoomIn,
+  &_tool-zoomOut,
+  &_tool-redo,
+  &_tool-undo,
+  &_tool-hand,
+  &_tool-rotate,
+  &_tool-flip,
+  &_tool-reset,
+  &_tool-history {
+    float: right;
+  }
+
+  &_icon-close,
+  &_icon-check {
+    color: #666;
+    font-size: 14px;
+    margin: 0 8px;
+    cursor: pointer;
+  }
+
+  /** 配置 */
+  &_tool-paint-size {
+    border-radius: 50%;
+    border: 1px solid #666;
+    margin-right: 8px;
+    cursor: pointer;
+  }
+
+  &_tool-paint-size--checked{
+    border: 1px solid blue;
+    background-color: blue;
+  }
+
+  &_tool-paint-color{
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    cursor: pointer;
+    border: 1px solid #666;
+  }
+
+  &_tool-paint-size:hover,
+  &_tool-paint-color:hover{
+    box-shadow: 0px 0px 6px blue;
+  }
+
+  &_tool-paint-content,
+  &_tool-paint-size-wrapper,
+  &_tool-paint-color-wrapper{
+    display: flex;
+    align-items: center;
+  }
+
+  /** 旋转配置 */
+  &_tool-rotate-pop-content{
+    padding: 4px 16px 16px;
+    width: 280px;
+  }
+
+  &_tool-crop-pop_icon{
+    color: #515151;
+    cursor: pointer;
+  }
+
+  &_tool-crop-pop_icon:hover{
+    color: blue;
+  }
+
+  &_tool-crop-pop_icon:first-child{
+    margin-right: 12px;
+  }
+
+  &-history_pop{
+    max-height: 200px;
+    overflow-y: auto;
+  }
+
+  &-history_pop-len{
+    color: #b3111c;
+    font-weight: bold;
+  }
+
+  &-history_pop-title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 24px;
+  }
+
+  &-history_pop-item {
+    display: flex;
+    align-items: center;
+    width: 120px;
+    padding: 2px 8px;
+    line-height: 22px;
+    cursor: pointer;
+  }
+
+  &-history_pop-item:hover {
+    background-color: #f3f9ff;
+  }
+  &-history_pop-item--checked:hover,
+  &-history_pop-item--checked {
+    background-color: #fff6ee;
+  }
+
+  &-history_pop-item-num{
+    margin-right: 4px;
+  }
+
+  &-history_pop-item-icon{
+    font-size: 14px;
+    margin-left: 4px;
+    color: #b3111c;
+  }
+
+  &_tool-upload-input{
+    z-index: 2;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  /** 缩放 */
+  &_tool-scale-pop-content{
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &_tool-scale-pop-icons{
+    margin-left: 18px;
+  }
+
+  &_tool-scale-pop-icon{
+    padding: 4px;
+    margin: 0 4px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    background-color: #f1f2f3;
+    border-radius: 50%;
+  }
+
+  &_tool-scale-pop-icon:hover{
+    background-color: #999;
+  }
+
+  &_tool-scale-pop-zoom{
+    width: 50px;
+    font-weight: bold;
+  }
+}
