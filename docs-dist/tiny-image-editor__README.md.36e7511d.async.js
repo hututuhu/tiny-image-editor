@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunktiny_image_editor=self.webpackChunktiny_image_editor||[]).push([[418],{99890:function(a,e,_){_.r(e);var m=_(2143),u=_(93359),o=_(19977),s=_(35749),E=_(24268),D=_(96057),l=_(59543),d=_(73847),M=_(67294),t=_(85893);function i(){var n=(0,d.eL)(),P=n.texts;return(0,t.jsx)(d.dY,{children:(0,t.jsx)(t.Fragment,{})})}e.default=i}}]);
