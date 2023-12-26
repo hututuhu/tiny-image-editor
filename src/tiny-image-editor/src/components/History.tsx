@@ -13,12 +13,15 @@ import React from 'react';
 
 import {
   ACTION,
+  ACTION_TEXT,
   MAX_HISTORY_LEN,
   MENU_TYPE_ENUM,
+  MENU_TYPE_TEXT,
   WORK_SPACE_ID,
   stayRemain,
 } from '../constants';
 import { EditorContext, IHistory } from '../util';
+import Popover from './setting/Popover';
 
 export const useHistory = () => {
   const {
@@ -218,29 +221,36 @@ export const History = forwardRef((props, ref) => {
     <>
       <div
         className={classNames(
-          'bre-image-editor_tool-item bre-image-editor_tool-history',
+          'tie-image-editor_tool-item tie-image-editor_tool-history',
           {
-            'bre-image-editor_tool-item--disabled': !history.length,
+            'tie-image-editor_tool-item--disabled': !history.length,
           },
         )}
       >
-        {/* <Popover
+        <Popover
           content={
-            <div className="bre-image-editor-history_pop">
+            <div className="tie-image-editor-history_pop">
               {!!history.length && (
                 <>
-                  <div className="bre-image-editor-history_pop-title">
-                    历史<span className="bre-image-editor-history_pop-len">（{history.length}）</span>
+                  <div className="tie-image-editor-history_pop-title">
+                    历史
+                    <span className="tie-image-editor-history_pop-len">
+                      （{history.length}）
+                    </span>
                   </div>
                   <div
                     onClick={() => renderNewCanvas('')}
-                    className={classNames('bre-image-editor-history_pop-item', {
-                      'bre-image-editor-history_pop-item--checked': !currentId,
+                    className={classNames('tie-image-editor-history_pop-item', {
+                      'tie-image-editor-history_pop-item--checked': !currentId,
                     })}
                   >
-                    <span className="bre-image-editor-history_pop-item-num">1.</span>
+                    <span className="tie-image-editor-history_pop-item-num">
+                      1.
+                    </span>
                     初始化
-                    {!currentId && <Icon type="check-round" className="bre-image-editor-history_pop-item-icon" />}
+                    {!currentId && (
+                      <i className="tie-image-editor-history_pop-item-icon" />
+                    )}
                   </div>
                 </>
               )}
@@ -249,60 +259,65 @@ export const History = forwardRef((props, ref) => {
                 <div
                   key={id}
                   onClick={() => renderNewCanvas(id)}
-                  className={classNames('bre-image-editor-history_pop-item', {
-                    'bre-image-editor-history_pop-item--checked': id === currentId,
+                  className={classNames('tie-image-editor-history_pop-item', {
+                    'tie-image-editor-history_pop-item--checked':
+                      id === currentId,
                   })}
                 >
-                  <span className="bre-image-editor-history_pop-item-num">{index + 2}.</span>
+                  <span className="tie-image-editor-history_pop-item-num">
+                    {index + 2}.
+                  </span>
                   {ACTION_TEXT[action]}
                   {MENU_TYPE_TEXT[type]}
-                  {id === currentId && <Icon type="check-round" className="bre-image-editor-history_pop-item-icon" />}
+                  {id === currentId && (
+                    <i className="tie-image-editor-history_pop-item-icon" />
+                  )}
                 </div>
               ))}
             </div>
           }
           placement="bottom"
-          className="bre-image-editor-history_target"
-        > */}
-        <i className={classNames('bre-image-editor_icon')} />
-        {/* </Popover> */}
+          className="tie-image-editor-history_target"
+        >
+          <i className={classNames('tie-image-editor_icon')} />
+        </Popover>
       </div>
       <div
         className={classNames(
-          'bre-image-editor_tool-item bre-image-editor_tool-redo',
+          'tie-image-editor_tool-item tie-image-editor_tool-redo',
           {
-            'bre-image-editor_tool-item--disabled':
+            'tie-image-editor_tool-item--disabled':
               !history.length || currentId === history[history.length - 1]?.id,
           },
         )}
       >
-        {/* <Popover content="前进" placement="top"> */}
-        <i
-          className={classNames('bre-image-editor_icon')}
-          onClick={
-            !history.length || currentId === history[history.length - 1]?.id
-              ? undefined
-              : handleRedo
-          }
-        />
-        {/* </Popover> */}
+        <Popover content="前进" placement="top">
+          <i
+            className={classNames('tie-image-editor_icon')}
+            onClick={
+              !history.length || currentId === history[history.length - 1]?.id
+                ? undefined
+                : handleRedo
+            }
+          />
+        </Popover>
       </div>
 
       <div
         className={classNames(
-          'bre-image-editor_tool-item bre-image-editor_tool-undo',
+          'tie-image-editor_tool-item tie-image-editor_tool-undo',
           {
-            'bre-image-editor_tool-item--disabled':
+            'tie-image-editor_tool-item--disabled':
               !history.length || !currentId,
           },
         )}
       >
-        {/* <Popover content="回退" placement="top"> */}
-        <i
-          className={classNames('bre-image-editor_icon')}
-          onClick={!history.length || !currentId ? undefined : handleUndo}
-        />
-        {/* </Popover> */}
+        <Popover content="回退" placement="top">
+          <i
+            className={classNames('tie-image-editor_icon')}
+            onClick={!history.length || !currentId ? undefined : handleUndo}
+          />
+        </Popover>
       </div>
     </>
   );

@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-import { fabric } from 'fabric';
-import { useContext, useRef } from 'react';
-// import { Popover } from '@casstime/bricks';
 import classNames from 'classnames';
-import React from 'react';
+import { fabric } from 'fabric';
+import React, { useContext, useRef } from 'react';
 
 import { IPaintTypes, MENU_TYPE_ENUM, paintConfig } from '../constants';
 import { EditorContext } from '../util';
 import Paint from './setting/Paint';
+import Popover from './setting/Popover';
 
 export const useDraw = () => {
   const { canvasInstanceRef, currentMenuRef, setCurrentMenu, currentMenu } =
@@ -84,9 +83,9 @@ export const Draw = () => {
     <>
       <div
         className={classNames(
-          'bre-image-editor_tool-item bre-image-editor_tool-draw',
+          'tie-image-editor_tool-item tie-image-editor_tool-draw',
           {
-            ['bre-image-editor_tool-item--checked']:
+            ['tie-image-editor_tool-item--checked']:
               currentMenu === MENU_TYPE_ENUM.draw,
           },
         )}
@@ -95,9 +94,9 @@ export const Draw = () => {
           open={currentMenu === MENU_TYPE_ENUM.draw}
           onChange={handlePaintChange}
         >
-          {/* <Popover content="画笔" placement="top"> */}
-          <i className="bre-image-editor_icon" onClick={handleDrawTrigger} />
-          {/* </Popover> */}
+          <Popover content="画笔" placement="top">
+            <i className="tie-image-editor_icon" onClick={handleDrawTrigger} />
+          </Popover>
         </Paint>
       </div>
     </>

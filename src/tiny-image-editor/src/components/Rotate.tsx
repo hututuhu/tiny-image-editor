@@ -6,6 +6,7 @@ import React from 'react';
 
 import { ACTION, MENU_TYPE_ENUM } from '../constants';
 import { EditorContext } from '../util';
+import Popover from './setting/Popover';
 import RotatePop from './setting/RotatePop';
 
 export const useRotate = () => {
@@ -33,7 +34,7 @@ export const useRotate = () => {
     );
   };
 
-  const handleRotateChange = (value: number) => {
+  const handleRotateChange = (value: number | number[]) => {
     const canvas = canvasInstanceRef.current;
     if (!canvas) {
       return;
@@ -46,7 +47,7 @@ export const useRotate = () => {
       let posNewCenter = fabric.util.rotatePoint(
         obj.originalPoint,
         canvas.getVpCenter(),
-        fabric.util.degreesToRadians(value),
+        fabric.util.degreesToRadians(value as number),
       );
 
       obj.set({
@@ -73,9 +74,9 @@ export const Rotate = () => {
     <>
       <div
         className={classNames(
-          'bre-image-editor_tool-item bre-image-editor_tool-rotate',
+          'tie-image-editor_tool-item tie-image-editor_tool-rotate',
           {
-            ['bre-image-editor_tool-item--checked']:
+            ['tie-image-editor_tool-item--checked']:
               currentMenu === MENU_TYPE_ENUM.rotate,
           },
         )}
@@ -84,9 +85,12 @@ export const Rotate = () => {
           open={currentMenu === MENU_TYPE_ENUM.rotate}
           onChange={handleRotateChange}
         >
-          {/* <Popover content="旋转" placement="top"> */}
-          <i className="bre-image-editor_icon" onClick={handleRotateTrigger} />
-          {/* </Popover> */}
+          <Popover content="旋转" placement="top">
+            <i
+              className="tie-image-editor_icon"
+              onClick={handleRotateTrigger}
+            />
+          </Popover>
         </RotatePop>
       </div>
     </>

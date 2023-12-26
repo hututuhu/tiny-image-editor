@@ -2,6 +2,7 @@
 import React, { useContext } from 'react';
 import { ACTION, MENU_TYPE_ENUM } from '../constants';
 import { EditorContext } from '../util';
+import Popover from './setting/Popover';
 
 const useUpload = () => {
   const {
@@ -50,17 +51,17 @@ const useUpload = () => {
 export const Upload = () => {
   const { handleUpload } = useUpload();
   return (
-    <div className="bre-image-editor_tool-item bre-image-editor_tool-upload">
-      {/* <Popover content="上传" placement="top"> */}
-      <i className="bre-image-editor_icon">
-        <input
-          onChange={handleUpload}
-          type="file"
-          className="bre-image-editor_tool-upload-input"
-          accept="image/*"
-        />
-      </i>
-      {/* </Popover> */}
+    <div className="tie-image-editor_tool-item tie-image-editor_tool-upload">
+      <Popover content="上传" placement="top">
+        <i className="tie-image-editor_icon">
+          <input
+            onChange={handleUpload}
+            type="file"
+            className="tie-image-editor_tool-upload-input"
+            accept="image/*"
+          />
+        </i>
+      </Popover>
     </div>
   );
 };

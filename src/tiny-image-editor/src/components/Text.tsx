@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { IPaintTypes, MENU_TYPE_ENUM, paintConfig } from '../constants';
 import { EditorContext } from '../util';
 import Paint from './setting/Paint';
+import Popover from './setting/Popover';
 
 export const useText = () => {
   const {
@@ -105,9 +106,9 @@ export const Text = () => {
     <>
       <div
         className={classNames(
-          'bre-image-editor_tool-item bre-image-editor_tool-text',
+          'tie-image-editor_tool-item tie-image-editor_tool-text',
           {
-            ['bre-image-editor_tool-item--checked']:
+            ['tie-image-editor_tool-item--checked']:
               currentMenu === MENU_TYPE_ENUM.text,
           },
         )}
@@ -117,9 +118,9 @@ export const Text = () => {
           onChange={handlePaintChange}
           type={MENU_TYPE_ENUM.text}
         >
-          {/* <Popover content="文字" placement="top"> */}
-          <i className="bre-image-editor_icon" onClick={handleTextTrigger} />
-          {/* </Popover> */}
+          <Popover content="文字" placement="top">
+            <i className="tie-image-editor_icon" onClick={handleTextTrigger} />
+          </Popover>
         </Paint>
       </div>
     </>

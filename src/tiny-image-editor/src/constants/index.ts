@@ -111,7 +111,7 @@ export const keyCodes = {
   DEL: 46,
 };
 
-export const IMAGE_NAME = 'bre_image_editor';
+export const IMAGE_NAME = 'tie_image_editor';
 
 export const DEFAULT_DIMENSION = 8;
 
@@ -130,3 +130,28 @@ export const MAX_HISTORY_LEN = 30;
 /** 空值 */
 export const EMPTY_STR = '';
 export const EMPTY_ARR = [];
+/** 原生dom事件的interface */
+export type IDOMProps = React.DOMAttributes<HTMLElement>;
+/** 通用的需要从 props 过滤掉的不属于 dom 的属性 */
+export const INVALID_PROPS = [
+  'onChange',
+  'loadData',
+  'onClick',
+  'onSelect',
+  'options',
+  'name',
+  'value',
+  'defaultValue',
+  'values',
+  'defaultValues',
+  'placeholder',
+  'large',
+  'small',
+  'iconRender',
+  'icon',
+  'activeIndex',
+  'swipeAble',
+  'fixedArrows',
+  'error',
+  'onVisibleChange',
+];

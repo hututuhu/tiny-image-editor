@@ -75,7 +75,7 @@ export const useInit = ({ url }: IProps) => {
         const { width, height } =
           wrapperInstanceRef.current.getBoundingClientRect();
         const canvas = new fabric.Canvas(canvasEl.current, {
-          containerClass: 'bre-image-editor_canvas',
+          containerClass: 'tie-image-editor_canvas',
           // enableRetinaScaling: false,
           // isDrawingMode: true,
           // fireRightClick: true, // 启用右键，button的数字为3

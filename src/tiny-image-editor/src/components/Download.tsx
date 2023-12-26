@@ -1,7 +1,7 @@
-// import { Popover } from '@casstime/bricks';
 import React, { forwardRef, useContext, useImperativeHandle } from 'react';
 import { IMAGE_NAME } from '../constants';
 import { EditorContext, base64ToBlob, isSupportFileApi } from '../util';
+import Popover from './setting/Popover';
 
 const useDownload = () => {
   const { canvasInstanceRef, canvasEl, onDownLoad } = useContext(EditorContext);
@@ -64,13 +64,13 @@ export const Download = forwardRef((props, ref) => {
   );
 
   return (
-    <div className="bre-image-editor_tool-item bre-image-editor_tool-download">
-      {/* <Popover content="下载" placement="top"> */}
-      <i
-        className="bre-image-editor_icon"
-        onClick={() => handleDownload(true)}
-      />
-      {/* </Popover> */}
+    <div className="tie-image-editor_tool-item tie-image-editor_tool-download">
+      <Popover content="下载" placement="top">
+        <i
+          className="tie-image-editor_icon"
+          onClick={() => handleDownload(true)}
+        />
+      </Popover>
     </div>
   );
 });

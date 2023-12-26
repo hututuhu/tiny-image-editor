@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-// import { Icon, Popover } from '@casstime/bricks';
 import React from 'react';
+import Popover from './Popover';
 
 interface IProps {
   children: React.ReactNode;
@@ -16,22 +16,24 @@ const CropPop = ({ children, open = false, onChange }: IProps) => {
   };
 
   return (
-    // <Popover
-    //   content={
-    //     <div className="bre-image-editor_tool-crop-pop">
-    //       <Icon
-    //         type="check-round"
-    //         className="bre-image-editor_tool-crop-pop_icon"
-    //         onClick={() => handleAngelChange(true)}
-    //       />
-    //       <Icon type="close" className="bre-image-editor_tool-crop-pop_icon" onClick={() => handleAngelChange(false)} />
-    //     </div>
-    //   }
-    //   placement="bottom"
-    //   open={open}
-    // >
-    <div>{children}</div>
-    // </Popover>
+    <Popover
+      content={
+        <div className="tie-image-editor_tool-crop-pop">
+          <i
+            className="tie-image-editor_tool-crop-pop_icon"
+            onClick={() => handleAngelChange(true)}
+          />
+          <i
+            className="tie-image-editor_tool-crop-pop_icon"
+            onClick={() => handleAngelChange(false)}
+          />
+        </div>
+      }
+      placement="bottom"
+      open={open}
+    >
+      <div>{children}</div>
+    </Popover>
   );
 };
 

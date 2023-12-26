@@ -1,11 +1,10 @@
-import { useContext, useEffect } from 'react';
-// import { Popover } from '@casstime/bricks';
 import classNames from 'classnames';
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import { ACTION, FLIP_TYPE, MENU_TYPE_ENUM } from '../constants';
 import { EditorContext } from '../util';
 import FlipPop from './setting/FlipPop';
+import Popover from './setting/Popover';
 
 export const useFlip = () => {
   const {
@@ -95,9 +94,9 @@ export const Flip = () => {
     <>
       <div
         className={classNames(
-          'bre-image-editor_tool-item bre-image-editor_tool-flip',
+          'tie-image-editor_tool-item tie-image-editor_tool-flip',
           {
-            ['bre-image-editor_tool-item--checked']:
+            ['tie-image-editor_tool-item--checked']:
               currentMenu === MENU_TYPE_ENUM.flip,
           },
         )}
@@ -106,9 +105,9 @@ export const Flip = () => {
           open={currentMenu === MENU_TYPE_ENUM.flip}
           onChange={handleFlipChange}
         >
-          {/* <Popover content="翻转" placement="top"> */}
-          <i className="bre-image-editor_icon" onClick={handleFlipTrigger} />
-          {/* </Popover> */}
+          <Popover content="翻转" placement="top">
+            <i className="tie-image-editor_icon" onClick={handleFlipTrigger} />
+          </Popover>
         </FlipPop>
       </div>
     </>

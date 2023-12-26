@@ -1,11 +1,11 @@
 import classNames from 'classnames';
 import React, { useCallback, useContext, useEffect, useRef } from 'react';
-// import { Popover } from '@casstime/bricks';
 
 import { fabric } from 'fabric';
 import { MENU_TYPE_ENUM, paintConfig } from '../constants';
 import { EditorContext } from '../util';
 import MosaicPop from './setting/MosaicPop';
+import Popover from './setting/Popover';
 
 let blockSize = paintConfig.mosaicSizes[0];
 
@@ -168,9 +168,9 @@ const Mosaic = () => {
     <>
       <div
         className={classNames(
-          'bre-image-editor_tool-item bre-image-editor_tool-mosaic',
+          'tie-image-editor_tool-item tie-image-editor_tool-mosaic',
           {
-            ['bre-image-editor_tool-item--checked']:
+            ['tie-image-editor_tool-item--checked']:
               currentMenu === MENU_TYPE_ENUM.mosaic,
           },
         )}
@@ -179,9 +179,12 @@ const Mosaic = () => {
           open={currentMenu === MENU_TYPE_ENUM.mosaic}
           onChange={handleSizeChange}
         >
-          {/* <Popover content="马赛克" placement="top"> */}
-          <i className="bre-image-editor_icon" onClick={handleMosaicTrigger} />
-          {/* </Popover> */}
+          <Popover content="马赛克" placement="top">
+            <i
+              className="tie-image-editor_icon"
+              onClick={handleMosaicTrigger}
+            />
+          </Popover>
         </MosaicPop>
       </div>
     </>

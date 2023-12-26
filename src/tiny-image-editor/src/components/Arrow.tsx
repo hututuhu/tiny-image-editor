@@ -1,12 +1,12 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import classNames from 'classnames';
+import { fabric } from 'fabric';
 import React, { useContext, useEffect, useRef } from 'react';
 import { ACTION, IPaintTypes, MENU_TYPE_ENUM, paintConfig } from '../constants';
-// import { Popover } from '@casstime/bricks';
-import { fabric } from 'fabric';
 import { EditorContext } from '../util';
 import Paint from './setting/Paint';
+import Popover from './setting/Popover';
 
 /** 自定义箭头 */
 (fabric as any).Arrow = fabric.util.createClass(fabric.Line, {
@@ -216,9 +216,9 @@ export const Arrow = () => {
   return (
     <div
       className={classNames(
-        'bre-image-editor_tool-item bre-image-editor_tool-arrow',
+        'tie-image-editor_tool-item tie-image-editor_tool-arrow',
         {
-          ['bre-image-editor_tool-item--checked']:
+          ['tie-image-editor_tool-item--checked']:
             currentMenu === MENU_TYPE_ENUM.arrow,
         },
       )}
@@ -227,12 +227,12 @@ export const Arrow = () => {
         open={currentMenu === MENU_TYPE_ENUM.arrow}
         onChange={handlePaintChange}
       >
-        {/* <Popover content="箭头" placement="top"> */}
-        <i
-          className={classNames('bre-image-editor_icon')}
-          onClick={handleArrowTrigger}
-        />
-        {/* </Popover> */}
+        <Popover content="箭头" placement="top">
+          <i
+            className={classNames('tie-image-editor_icon')}
+            onClick={handleArrowTrigger}
+          />
+        </Popover>
       </Paint>
     </div>
   );

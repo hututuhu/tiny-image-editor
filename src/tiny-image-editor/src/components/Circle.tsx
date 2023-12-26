@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-import { fabric } from 'fabric';
-import { useContext, useEffect, useRef } from 'react';
-import { EditorContext } from '../util';
-// import { Popover } from '@casstime/bricks';
 import classNames from 'classnames';
-import React from 'react';
+import { fabric } from 'fabric';
+import React, { useContext, useEffect, useRef } from 'react';
 import { ACTION, IPaintTypes, MENU_TYPE_ENUM, paintConfig } from '../constants';
+import { EditorContext } from '../util';
 import Paint from './setting/Paint';
+import Popover from './setting/Popover';
 
 export const useCircle = () => {
   const {
@@ -159,9 +158,9 @@ export const Circle = () => {
     <>
       <div
         className={classNames(
-          'bre-image-editor_tool-item bre-image-editor_tool-circle',
+          'tie-image-editor_tool-item tie-image-editor_tool-circle',
           {
-            ['bre-image-editor_tool-item--checked']:
+            ['tie-image-editor_tool-item--checked']:
               currentMenu === MENU_TYPE_ENUM.circle,
           },
         )}
@@ -170,12 +169,12 @@ export const Circle = () => {
           open={currentMenu === MENU_TYPE_ENUM.circle}
           onChange={handlePaintChange}
         >
-          {/* <Popover content="圆形" placement="top"> */}
-          <i
-            className={classNames('bre-image-editor_icon')}
-            onClick={handleDrawCircle}
-          />
-          {/* </Popover> */}
+          <Popover content="圆形" placement="top">
+            <i
+              className={classNames('tie-image-editor_icon')}
+              onClick={handleDrawCircle}
+            />
+          </Popover>
         </Paint>
       </div>
     </>

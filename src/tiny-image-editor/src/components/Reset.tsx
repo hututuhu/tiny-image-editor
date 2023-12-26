@@ -1,8 +1,8 @@
-// import { Popover } from '@casstime/bricks';
 import { fabric } from 'fabric';
 import React, { useContext } from 'react';
 import { ACTION, MENU_TYPE_ENUM } from '../constants';
 import { EditorContext } from '../util';
+import Popover from './setting/Popover';
 
 const useReset = () => {
   const {
@@ -44,10 +44,10 @@ const useReset = () => {
 export const Reset = () => {
   const { handleReset } = useReset();
   return (
-    <div className="bre-image-editor_tool-item bre-image-editor_tool-reset">
-      {/* <Popover content="重置" placement="top"> */}
-      <i className="bre-image-editor_icon" onClick={handleReset} />
-      {/* </Popover> */}
+    <div className="tie-image-editor_tool-item tie-image-editor_tool-reset">
+      <Popover content="重置" placement="top">
+        <i className="tie-image-editor_icon" onClick={handleReset} />
+      </Popover>
     </div>
   );
 };

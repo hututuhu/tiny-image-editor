@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-// import { Popover } from '@casstime/bricks';
 import React, { useState } from 'react';
 import { FLIP_TYPE } from '../../constants';
+import Popover from './Popover';
 
 interface IProps {
   children: React.ReactNode;
@@ -25,28 +25,28 @@ const FlipPop = ({ children, open = false, onChange }: IProps) => {
   };
 
   return (
-    // <Popover
-    //   content={
-    //     <div className="bre-image-editor_tool-flip-pop">
-    //       <div
-    //         className="bre-image-editor_tool-item bre-image-editor_tool-flipX"
-    //         onClick={() => handleAngelChange(FLIP_TYPE.flipX, !flipX)}
-    //       >
-    //         <i className="bre-image-editor_icon" />
-    //       </div>
-    //       <div
-    //         className="bre-image-editor_tool-item bre-image-editor_tool-flipY"
-    //         onClick={() => handleAngelChange(FLIP_TYPE.flipY, !flipY)}
-    //       >
-    //         <i className="bre-image-editor_icon" />
-    //       </div>
-    //     </div>
-    //   }
-    //   placement="bottom"
-    //   open={open}
-    // >
-    <div>{children}</div>
-    // </Popover>
+    <Popover
+      content={
+        <div className="tie-image-editor_tool-flip-pop">
+          <div
+            className="tie-image-editor_tool-item tie-image-editor_tool-flipX"
+            onClick={() => handleAngelChange(FLIP_TYPE.flipX, !flipX)}
+          >
+            <i className="tie-image-editor_icon" />
+          </div>
+          <div
+            className="tie-image-editor_tool-item tie-image-editor_tool-flipY"
+            onClick={() => handleAngelChange(FLIP_TYPE.flipY, !flipY)}
+          >
+            <i className="tie-image-editor_icon" />
+          </div>
+        </div>
+      }
+      placement="bottom"
+      open={open}
+    >
+      <div>{children}</div>
+    </Popover>
   );
 };
 

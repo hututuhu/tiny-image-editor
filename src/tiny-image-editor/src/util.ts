@@ -1,5 +1,10 @@
 import React from 'react';
-import { ACTION, IEditorProps, MENU_TYPE_ENUM } from './constants';
+import {
+  ACTION,
+  IEditorProps,
+  INVALID_PROPS,
+  MENU_TYPE_ENUM,
+} from './constants';
 
 export interface IEditorContextProps extends IEditorProps {
   canvasInstanceRef: React.MutableRefObject<any>;
@@ -77,4 +82,48 @@ export const clamp = (value: number, minValue: number, maxValue: number) => {
   }
 
   return Math.max(minValue, Math.min(value, maxValue));
+};
+export const omit = <T extends { [key: string]: any }>(
+  object: T,
+  array: string[],
+): T => {
+  // const mapObject = { ...object };
+  const mapObject = Object.assign({}, object);
+  array.forEach((key: string) => {
+    delete mapObject[key];
+  });
+  return mapObject;
+};
+/**
+ * 移除非 Dom 属性的 props 的值
+ * @param props 需要过滤 props 的属性
+ * @param {string[]} invalidProps 需要从 props 过滤掉的不属于 dom 的属性.
+ */
+export function removeNonHTMLProps(
+  props: { [key: string]: any },
+  invalidProps: string[] = [],
+): { [key: string]: any } {
+  // eslint-disable-next-line no-param-reassign
+  invalidProps = invalidProps.concat(INVALID_PROPS);
+  return omit(props, invalidProps);
+}
+/**获取IE浏览器版本 */
+export const getIEVersion = () => {
+  if (navigator) {
+    let userAgent = navigator.userAgent;
+    const ie11 =
+      userAgent.indexOf('Trident') > -1 && userAgent.indexOf('rv:11.0') > -1;
+    if (ie11) {
+      return 11;
+    }
+    const versionArr = navigator.appVersion.split(';')[1];
+    if (!versionArr) {
+      return;
+    }
+    const version = versionArr.replace(/[ ]/g, '');
+    const result = /MSIE(\d+)\./.exec(version);
+    if (result) {
+      return parseInt(result[1]);
+    }
+  }
 };

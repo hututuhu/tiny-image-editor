@@ -1,6 +1,7 @@
+/* eslint-disable react/button-has-type */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-// import { Button, Icon, Popover } from '@casstime/bricks';
 import React from 'react';
+import Popover from './Popover';
 
 interface IProps {
   children: React.ReactNode;
@@ -21,25 +22,35 @@ const ScalePop = ({
   onReset,
 }: IProps) => {
   return (
-    // <Popover
-    //   content={
-    //     <div className="bre-image-editor_tool-scale-pop-content">
-    //       <div className="bre-image-editor_tool-scale-pop-zoom">{+(zoom * 100).toFixed(0)}%</div>
-    //       <div className="bre-image-editor_tool-scale-pop-icons">
-    //         <Icon type="subtract" className="bre-image-editor_tool-scale-pop-icon" onClick={onScaleDown} />
-    //         <Icon type="add" className="bre-image-editor_tool-scale-pop-icon" onClick={onScaleUp} />
-    //       </div>
-    //       <Button round outline onClick={onReset}>
-    //         重置
-    //       </Button>
-    //     </div>
-    //   }
-    //   placement="bottom-end"
-    //   open={open}
-    //   showArrow={false}
-    // >
-    <div>{children}</div>
-    // </Popover>
+    <Popover
+      content={
+        <div className="tie-image-editor_tool-scale-pop-content">
+          <div className="tie-image-editor_tool-scale-pop-zoom">
+            {+(zoom * 100).toFixed(0)}%
+          </div>
+          <div className="tie-image-editor_tool-scale-pop-icons">
+            <div className="tie-image-editor_tool-item tie-image-editor_tool-subtract">
+              <i
+                className="tie-image-editor_tool-scale-pop-icon tie-image-editor_icon"
+                onClick={onScaleDown}
+              />
+            </div>
+            <div className="tie-image-editor_tool-item tie-image-editor_tool-add">
+              <i
+                className="tie-image-editor_tool-scale-pop-icon tie-image-editor_icon"
+                onClick={onScaleUp}
+              />
+            </div>
+          </div>
+          <button onClick={onReset}>重置</button>
+        </div>
+      }
+      placement="bottom-end"
+      open={open}
+      showArrow={false}
+    >
+      <div>{children}</div>
+    </Popover>
   );
 };
 

@@ -4,8 +4,9 @@ import React, { useContext, useEffect } from 'react';
 // import { Popover } from '@casstime/bricks';
 import classNames from 'classnames';
 
-import { MENU_TYPE_ENUM } from '../constants';
+import { MENU_TYPE_ENUM, MENU_TYPE_TEXT } from '../constants';
 import { EditorContext } from '../util';
+import Popover from './setting/Popover';
 import ScalePop from './setting/ScalePop';
 
 export const useScale = () => {
@@ -118,9 +119,9 @@ export const Scale = () => {
     <>
       <div
         className={classNames(
-          'bre-image-editor_tool-item bre-image-editor_tool-zoomIn',
+          'tie-image-editor_tool-item tie-image-editor_tool-zoomIn',
           {
-            ['bre-image-editor_tool-item--checked']:
+            ['tie-image-editor_tool-item--checked']:
               currentMenu === MENU_TYPE_ENUM.scale,
           },
         )}
@@ -132,12 +133,12 @@ export const Scale = () => {
           onScaleUp={handleScaleUp}
           onReset={handleReset}
         >
-          {/* <Popover content={MENU_TYPE_TEXT.scale} placement="top"> */}
-          <i
-            className={classNames('bre-image-editor_icon')}
-            onClick={handleScaleTrigger}
-          />
-          {/* </Popover> */}
+          <Popover content={MENU_TYPE_TEXT.scale} placement="top">
+            <i
+              className={classNames('tie-image-editor_icon')}
+              onClick={handleScaleTrigger}
+            />
+          </Popover>
         </ScalePop>
       </div>
     </>

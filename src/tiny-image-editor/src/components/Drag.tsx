@@ -1,9 +1,9 @@
-// import { Popover } from '@casstime/bricks';
 import React, { useContext, useEffect, useRef } from 'react';
 
 import classNames from 'classnames';
 import { MENU_TYPE_ENUM, WORK_SPACE_ID } from '../constants';
 import { EditorContext } from '../util';
+import Popover from './setting/Popover';
 
 export const useDrag = () => {
   const {
@@ -175,19 +175,19 @@ export const Drag = () => {
   return (
     <div
       className={classNames(
-        'bre-image-editor_tool-item bre-image-editor_tool-hand',
+        'tie-image-editor_tool-item tie-image-editor_tool-hand',
         {
-          ['bre-image-editor_tool-item--checked']:
+          ['tie-image-editor_tool-item--checked']:
             currentMenu === MENU_TYPE_ENUM.drag,
         },
       )}
     >
-      {/* <Popover content="抓取" placement="top"> */}
-      <i
-        className={classNames('bre-image-editor_icon')}
-        onClick={handleMoving}
-      />
-      {/* </Popover> */}
+      <Popover content="抓取" placement="top">
+        <i
+          className={classNames('tie-image-editor_icon')}
+          onClick={handleMoving}
+        />
+      </Popover>
     </div>
   );
 };

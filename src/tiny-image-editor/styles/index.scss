@@ -1,4 +1,4 @@
-.bre-image-editor {
+.tie-image-editor {
   // &_modal{
 
   // }
@@ -133,6 +133,14 @@
 
   &_tool-history &_icon {
     background-image: url('../src/assets/history.svg');
+  }
+
+  &_tool-subtract &_icon {
+    background-image: url('../src/assets/subtract.svg');
+  }
+
+  &_tool-add &_icon {
+    background-image: url('../src/assets/add.svg');
   }
 
   &_tool-upload &_input {
@@ -321,16 +329,152 @@
     width: 16px;
     height: 16px;
     cursor: pointer;
-    background-color: #f1f2f3;
+    // background-color: #f1f2f3;
     border-radius: 50%;
   }
 
   &_tool-scale-pop-icon:hover{
-    background-color: #999;
+    // background-color: #999;
+    opacity: .8;
   }
 
   &_tool-scale-pop-zoom{
     width: 50px;
     font-weight: bold;
+  }
+}
+
+$white:#fff;
+// 基础变量
+$base-z-index: 1000 !default;
+// 基础间隙
+$spacer: 8px !default;
+// Popover组件
+$popover-z-index: $base-z-index !default;
+$popper__arrow-borderWidth: 8px !default;
+$popper-margin: 10px !default;
+$popper-inner-padding: $spacer !default;
+//中等圆角
+$medium-border-radius: 4px;
+
+.tie-popover {
+  &__target {
+    display: inline-block;
+  }
+
+  &__popper {
+    z-index: $popover-z-index;
+    padding: $popper-inner-padding;
+    background: $white;
+    border: 1px solid transparent;
+    border-radius: $medium-border-radius;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.14) \9;
+    filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.14));
+
+    &::after {
+      position: absolute;
+      display: block;
+      content: '';
+    }
+
+    &[x-placement^='top'] {
+      &::after {
+        bottom: -11px;
+        left: 0;
+        width: 100%;
+        height: 10px;
+      }
+
+      > div > div > .tie-popper__arrow {
+        bottom: -$popper__arrow-borderWidth;
+        //  border-top-color: $border-color;
+        border-bottom-width: 0;
+        filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.05));
+
+        &::after {
+          bottom: 1px;
+          margin-left: -$popper__arrow-borderWidth;
+          border-top-color: $white;
+          border-bottom-width: 0;
+        }
+      }
+    }
+
+    &[x-placement^='bottom'] {
+      &::after {
+        top: -11px;
+        left: 0;
+        width: 100%;
+        height: 10px;
+      }
+
+      > div > div > .tie-popper__arrow {
+        top: -$popper__arrow-borderWidth;
+        border-top-width: 0;
+        // border-bottom-color: $border-color;
+
+        &::after {
+          top: 1px;
+          margin-left: -$popper__arrow-borderWidth;
+          border-top-width: 0;
+          border-bottom-color: $white;
+        }
+      }
+    }
+
+    &[x-placement^='right'] {
+      &::after {
+        top: 0;
+        left: -11px;
+        width: 10px;
+        height: 100%;
+      }
+
+      > div > div > .tie-popper__arrow {
+        left: -$popper__arrow-borderWidth;
+        //  border-right-color: $border-color;
+        border-left-width: 0;
+
+        &::after {
+          left: 1px;
+          margin-top: -$popper__arrow-borderWidth;
+          border-right-color: $white;
+          border-left-width: 0;
+        }
+      }
+    }
+
+    &[x-placement^='left'] {
+      &::after {
+        top: 0;
+        right: -11px;
+        width: 10px;
+        height: 100%;
+      }
+
+      > div > div > .tie-popper__arrow {
+        right: -$popper__arrow-borderWidth;
+        border-right-width: 0;
+        // border-left-color: $border-color;
+
+        &::after {
+          right: 1px;
+          margin-top: -$popper__arrow-borderWidth;
+          border-right-width: 0;
+          border-left-color: $white;
+        }
+      }
+    }
+
+    & .tie-popper__arrow,
+    & .tie-popper__arrow::after {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-color: transparent;
+      border-style: solid;
+      border-width: $popper__arrow-borderWidth;
+      content: '';
+    }
   }
 }

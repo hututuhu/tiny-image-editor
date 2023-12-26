@@ -1,8 +1,6 @@
-import { useCallback, useContext, useEffect, useRef } from 'react';
-// import { Popover, Toast } from '@casstime/bricks';
 import classNames from 'classnames';
 import { fabric } from 'fabric';
-import React from 'react';
+import React, { useCallback, useContext, useEffect, useRef } from 'react';
 
 import {
   ACTION,
@@ -14,6 +12,7 @@ import {
 import Cropzone from '../helpers/CropZone';
 import { EditorContext, clamp } from '../util';
 import CropPop from './setting/CropPop';
+import Popover from './setting/Popover';
 
 const MOUSE_MOVE_THRESHOLD = 10;
 
@@ -408,9 +407,9 @@ export const Crop = () => {
     <>
       <div
         className={classNames(
-          'bre-image-editor_tool-item bre-image-editor_tool-crop',
+          'tie-image-editor_tool-item tie-image-editor_tool-crop',
           {
-            ['bre-image-editor_tool-item--checked']:
+            ['tie-image-editor_tool-item--checked']:
               currentMenu === MENU_TYPE_ENUM.crop,
           },
         )}
@@ -419,9 +418,9 @@ export const Crop = () => {
           open={currentMenu === MENU_TYPE_ENUM.crop}
           onChange={handleCropChange}
         >
-          {/* <Popover content="裁剪" placement="top"> */}
-          <i className="bre-image-editor_icon" onClick={handleCropTrigger} />
-          {/* </Popover> */}
+          <Popover content="裁剪" placement="top">
+            <i className="tie-image-editor_icon" onClick={handleCropTrigger} />
+          </Popover>
         </CropPop>
       </div>
     </>

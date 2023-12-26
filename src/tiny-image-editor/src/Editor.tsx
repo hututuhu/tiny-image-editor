@@ -80,9 +80,9 @@ export const Editor = forwardRef(
           setZoom,
         }}
       >
-        <div className="bre-image-editor" style={style}>
+        <div className="tie-image-editor" style={style}>
           <Control />
-          <div className="bre-image-editor_tool clearfix">
+          <div className="tie-image-editor_tool clearfix">
             {(!menus.length || menus.includes(MENU_TYPE_ENUM.rect)) && <Rect />}
             {(!menus.length || menus.includes(MENU_TYPE_ENUM.circle)) && (
               <Circle />
@@ -119,7 +119,7 @@ export const Editor = forwardRef(
           </div>
           <div
             ref={wrapperInstanceRef}
-            className="bre-image-editor_modal__wrapper"
+            className="tie-image-editor_modal__wrapper"
           >
             <canvas ref={canvasEl} />
           </div>
