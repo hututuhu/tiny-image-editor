@@ -10,7 +10,7 @@
       "@@/*": [".dumi/tmp/*"],
       "tiny-image-editor": ["src"],
       "tiny-image-editor/*": ["src/*", "*"]
-    }
+    },
   },
   "include": [".dumirc.ts", "src/**/*.ts", "src/**/*.tsx"]
 }

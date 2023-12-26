@@ -2,7 +2,6 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import classNames from 'classnames';
 import React, { SyntheticEvent, useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
 
 import { Manager, Popper, Reference } from 'react-popper';
 import { IDOMProps } from '../../constants';
@@ -30,6 +29,7 @@ export type Placement =
 interface IArrowProps {
   arrowPlacement: string;
   backgroundColor?: string;
+  children:React.ReactNode
 }
 export interface IPopoverProps extends IDOMProps {
   className?: string;
@@ -57,15 +57,10 @@ export interface IPopoverProps extends IDOMProps {
   maskClosable?: boolean;
 }
 
-const ArrowWrapper = styled.div<IArrowProps>`
-    .popper__arrow {
-      &::after {
-        border-${(props: IArrowProps) => props.arrowPlacement}-color: ${(
-  props: IArrowProps,
-) => props.backgroundColor} !important;
-        }
-    }
-    `;
+
+const ArrowWrapper =  (props:IArrowProps) => {
+    return <div className='popper__arrow' style={{['border'+props.arrowPlacement+"-color"]:props.backgroundColor}}>{props.children}</div>
+  }
 
 const Popover = (props: IPopoverProps) => {
   let popoverRef: React.RefObject<HTMLDivElement> = useRef(null);

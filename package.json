@@ -1,8 +1,14 @@
 {
   "name": "tiny-image-editor",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A react image editor of fabricjs",
+  "author": "hushanqing",
   "license": "MIT",
+  "homepage": "https://github.com/hututuhu/tiny-image-editor",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hututuhu/tiny-image-editor"
+  },
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -44,11 +50,15 @@
     ]
   },
   "dependencies": {
-    "fabric": "^5.3.0"
+    "@popperjs/core": "^2.11.8",
+    "fabric": "^5.3.0",
+    "rc-slider": "^10.5.0",
+    "react-popper": "^2.3.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
+    "@types/fabric": "^5.3.6",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@umijs/lint": "^4.0.0",
