@@ -7,7 +7,8 @@ A react image editor of fabricjs
 
 ## Usage
 
-TODO
+![ImageEditor](https://github.com/hututuhu/tiny-image-editor/assets/37233828/95077dc7-065d-4fd3-95f8-26399d5993ab)
+
 
 ## Options
 
