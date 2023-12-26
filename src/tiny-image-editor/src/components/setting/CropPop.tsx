@@ -11,7 +11,7 @@ interface IProps {
 
 /** 旋转参数 */
 const CropPop = ({ children, open = false, onChange }: IProps) => {
-  const handleAngelChange = (value: boolean) => {
+  const handleChange = (value: boolean) => {
     onChange && onChange(value);
   };
 
@@ -19,14 +19,18 @@ const CropPop = ({ children, open = false, onChange }: IProps) => {
     <Popover
       content={
         <div className="tie-image-editor_tool-crop-pop">
-          <i
-            className="tie-image-editor_tool-crop-pop_icon"
-            onClick={() => handleAngelChange(true)}
-          />
-          <i
-            className="tie-image-editor_tool-crop-pop_icon"
-            onClick={() => handleAngelChange(false)}
-          />
+          <div className="tie-image-editor_tool-item tie-image-editor_tool-done">
+            <i
+              className="tie-image-editor_icon"
+              onClick={() => handleChange(true)}
+            />
+          </div>
+          <div className="tie-image-editor_tool-item tie-image-editor_tool-clear">
+            <i
+              className="tie-image-editor_icon"
+              onClick={() => handleChange(false)}
+            />
+          </div>
         </div>
       }
       placement="bottom"

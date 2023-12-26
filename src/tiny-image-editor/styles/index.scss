@@ -143,6 +143,14 @@
     background-image: url('../src/assets/add.svg');
   }
 
+  &_tool-done &_icon {
+    background-image: url('../src/assets/done.svg');
+  }
+
+  &_tool-clear &_icon {
+    background-image: url('../src/assets/clear.svg');
+  }
+
   &_tool-upload &_input {
     position: absolute;
     top: 0;
