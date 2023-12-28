@@ -5,7 +5,9 @@ import React, { useCallback, useContext, useEffect, useRef } from 'react';
 import {
   ACTION,
   IMAGE_NAME,
+  LANG,
   MENU_TYPE_ENUM,
+  MENU_TYPE_TEXT,
   WORK_SPACE_ID,
   keyCodes,
 } from '../constants';
@@ -402,6 +404,9 @@ export const useCrop = () => {
 
 /** 裁剪 */
 export const Crop = () => {
+  const {
+    lang = LANG.en
+  } = useContext(EditorContext);
   const { handleCropTrigger, handleCropChange, currentMenu } = useCrop();
   return (
     <>
@@ -418,7 +423,7 @@ export const Crop = () => {
           open={currentMenu === MENU_TYPE_ENUM.crop}
           onChange={handleCropChange}
         >
-          <Popover content="裁剪" placement="top">
+          <Popover content={MENU_TYPE_TEXT.crop[lang]} placement="top">
             <i className="tie-image-editor_icon" onClick={handleCropTrigger} />
           </Popover>
         </CropPop>

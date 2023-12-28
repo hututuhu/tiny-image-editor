@@ -3,7 +3,7 @@
 import classNames from 'classnames';
 import { fabric } from 'fabric';
 import React, { useContext, useEffect, useRef } from 'react';
-import { ACTION, IPaintTypes, MENU_TYPE_ENUM, paintConfig } from '../constants';
+import { ACTION, IPaintTypes, LANG, MENU_TYPE_ENUM, MENU_TYPE_TEXT, paintConfig } from '../constants';
 import { EditorContext } from '../util';
 import Paint from './setting/Paint';
 import Popover from './setting/Popover';
@@ -212,6 +212,9 @@ export const useArrow = () => {
 
 /** 箭头 */
 export const Arrow = () => {
+  const {
+    lang = LANG.en
+  } = useContext(EditorContext);
   const { handleArrowTrigger, handlePaintChange, currentMenu } = useArrow();
   return (
     <div
@@ -227,7 +230,7 @@ export const Arrow = () => {
         open={currentMenu === MENU_TYPE_ENUM.arrow}
         onChange={handlePaintChange}
       >
-        <Popover content="箭头" placement="top">
+        <Popover content={MENU_TYPE_TEXT.arrow[lang]} placement="top">
           <i
             className={classNames('tie-image-editor_icon')}
             onClick={handleArrowTrigger}

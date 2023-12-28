@@ -6,6 +6,7 @@ import {
   EMPTY_STR,
   IEditorProps,
   MENU_TYPE_ENUM,
+  LANG
 } from './constants';
 import { EditorContext } from './util';
 
@@ -31,7 +32,7 @@ import { useInit } from './components/init';
 /** 图像编辑器组件 */
 export const Editor = forwardRef(
   (
-    { url = EMPTY_STR, style, menus = EMPTY_ARR, onDownLoad }: IEditorProps,
+    { url = EMPTY_STR, style, menus = EMPTY_ARR, onDownLoad,lang = LANG.en }: IEditorProps,
     ref,
   ) => {
     const {
@@ -78,6 +79,7 @@ export const Editor = forwardRef(
           initBackGroundImage,
           zoom,
           setZoom,
+          lang
         }}
       >
         <div className="tie-image-editor" style={style}>

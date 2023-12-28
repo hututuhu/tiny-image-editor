@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { fabric } from 'fabric';
 import React, { useContext, useRef } from 'react';
 
-import { IPaintTypes, MENU_TYPE_ENUM, paintConfig } from '../constants';
+import { IPaintTypes, LANG, MENU_TYPE_ENUM, MENU_TYPE_TEXT, paintConfig } from '../constants';
 import { EditorContext } from '../util';
 import Paint from './setting/Paint';
 import Popover from './setting/Popover';
@@ -78,6 +78,9 @@ export const useDraw = () => {
 };
 
 export const Draw = () => {
+  const {
+    lang = LANG.en
+  } = useContext(EditorContext);
   const { handleDrawTrigger, handlePaintChange, currentMenu } = useDraw();
   return (
     <>
@@ -94,7 +97,7 @@ export const Draw = () => {
           open={currentMenu === MENU_TYPE_ENUM.draw}
           onChange={handlePaintChange}
         >
-          <Popover content="画笔" placement="top">
+          <Popover content={MENU_TYPE_TEXT.draw[lang]} placement="top">
             <i className="tie-image-editor_icon" onClick={handleDrawTrigger} />
           </Popover>
         </Paint>

@@ -1,6 +1,6 @@
 import { fabric } from 'fabric';
 import React, { useContext } from 'react';
-import { ACTION, MENU_TYPE_ENUM } from '../constants';
+import { ACTION, LANG, MENU_TYPE_ENUM, MENU_TYPE_TEXT } from '../constants';
 import { EditorContext } from '../util';
 import Popover from './setting/Popover';
 
@@ -42,10 +42,13 @@ const useReset = () => {
 
 /** 重置 */
 export const Reset = () => {
+  const {
+    lang = LANG.en
+  } = useContext(EditorContext);
   const { handleReset } = useReset();
   return (
     <div className="tie-image-editor_tool-item tie-image-editor_tool-reset">
-      <Popover content="重置" placement="top">
+      <Popover content={MENU_TYPE_TEXT.reset[lang]} placement="top">
         <i className="tie-image-editor_icon" onClick={handleReset} />
       </Popover>
     </div>

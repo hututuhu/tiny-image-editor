@@ -1,5 +1,5 @@
 import React, { forwardRef, useContext, useImperativeHandle } from 'react';
-import { IMAGE_NAME } from '../constants';
+import { IMAGE_NAME, LANG, MENU_TYPE_TEXT } from '../constants';
 import { EditorContext, base64ToBlob, isSupportFileApi } from '../util';
 import Popover from './setting/Popover';
 
@@ -53,6 +53,9 @@ const useDownload = () => {
 
 /** 下载 */
 export const Download = forwardRef((props, ref) => {
+  const {
+    lang = LANG.en
+  } = useContext(EditorContext);
   const { handleDownload } = useDownload();
 
   useImperativeHandle(
@@ -65,7 +68,7 @@ export const Download = forwardRef((props, ref) => {
 
   return (
     <div className="tie-image-editor_tool-item tie-image-editor_tool-download">
-      <Popover content="下载" placement="top">
+      <Popover content={MENU_TYPE_TEXT.download[lang]} placement="top">
         <i
           className="tie-image-editor_icon"
           onClick={() => handleDownload(true)}

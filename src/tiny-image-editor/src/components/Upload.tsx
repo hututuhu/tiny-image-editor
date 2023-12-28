@@ -1,6 +1,6 @@
 // import { Popover } from '@casstime/bricks';
 import React, { useContext } from 'react';
-import { ACTION, MENU_TYPE_ENUM } from '../constants';
+import { ACTION, LANG, MENU_TYPE_ENUM, MENU_TYPE_TEXT } from '../constants';
 import { EditorContext } from '../util';
 import Popover from './setting/Popover';
 
@@ -49,10 +49,13 @@ const useUpload = () => {
 
 /** 上传 */
 export const Upload = () => {
+  const {
+    lang = LANG.en
+  } = useContext(EditorContext);
   const { handleUpload } = useUpload();
   return (
     <div className="tie-image-editor_tool-item tie-image-editor_tool-upload">
-      <Popover content="上传" placement="top">
+      <Popover content={MENU_TYPE_TEXT.upload[lang]} placement="top">
         <i className="tie-image-editor_icon">
           <input
             onChange={handleUpload}

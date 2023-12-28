@@ -4,7 +4,7 @@ import React, { useCallback, useContext, useEffect, useRef } from 'react';
 // import { Popover } from '@casstime/bricks';
 import classNames from 'classnames';
 
-import { IPaintTypes, MENU_TYPE_ENUM, paintConfig } from '../constants';
+import { IPaintTypes, LANG, MENU_TYPE_ENUM, MENU_TYPE_TEXT, paintConfig } from '../constants';
 import { EditorContext } from '../util';
 import Paint from './setting/Paint';
 import Popover from './setting/Popover';
@@ -101,6 +101,9 @@ export const useText = () => {
 };
 
 export const Text = () => {
+  const {
+    lang = LANG.en
+  } = useContext(EditorContext);
   const { handleTextTrigger, handlePaintChange, currentMenu } = useText();
   return (
     <>
@@ -118,7 +121,7 @@ export const Text = () => {
           onChange={handlePaintChange}
           type={MENU_TYPE_ENUM.text}
         >
-          <Popover content="文字" placement="top">
+          <Popover content={MENU_TYPE_TEXT.text[lang]} placement="top">
             <i className="tie-image-editor_icon" onClick={handleTextTrigger} />
           </Popover>
         </Paint>

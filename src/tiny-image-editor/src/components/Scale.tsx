@@ -4,7 +4,7 @@ import React, { useContext, useEffect } from 'react';
 // import { Popover } from '@casstime/bricks';
 import classNames from 'classnames';
 
-import { MENU_TYPE_ENUM, MENU_TYPE_TEXT } from '../constants';
+import { LANG, MENU_TYPE_ENUM, MENU_TYPE_TEXT } from '../constants';
 import { EditorContext } from '../util';
 import Popover from './setting/Popover';
 import ScalePop from './setting/ScalePop';
@@ -108,6 +108,9 @@ export const useScale = () => {
 
 export const Scale = () => {
   const {
+    lang = LANG.en
+  } = useContext(EditorContext);
+  const {
     zoom,
     currentMenu,
     handleScaleDown,
@@ -133,7 +136,7 @@ export const Scale = () => {
           onScaleUp={handleScaleUp}
           onReset={handleReset}
         >
-          <Popover content={MENU_TYPE_TEXT.scale} placement="top">
+          <Popover content={MENU_TYPE_TEXT.scale[lang]} placement="top">
             <i
               className={classNames('tie-image-editor_icon')}
               onClick={handleScaleTrigger}

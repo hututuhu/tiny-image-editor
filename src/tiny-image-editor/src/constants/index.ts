@@ -37,25 +37,34 @@ export enum MENU_TYPE_ENUM {
   scale = 'scale',
   arrow = 'arrow',
   mosaic = 'mosaic',
+  undo = 'undo',
+  redo = 'redo',
   default = '',
 }
 
-export const MENU_TYPE_TEXT: { [key: string]: string } = {
-  [MENU_TYPE_ENUM.crop]: '裁剪',
-  [MENU_TYPE_ENUM.history]: '历史记录',
-  [MENU_TYPE_ENUM.download]: '下载',
-  [MENU_TYPE_ENUM.draw]: '画笔',
-  [MENU_TYPE_ENUM.flip]: '翻转',
-  [MENU_TYPE_ENUM.reset]: '重置',
-  [MENU_TYPE_ENUM.rotate]: '旋转',
-  [MENU_TYPE_ENUM.rect]: '矩形',
-  [MENU_TYPE_ENUM.circle]: '圆形',
-  [MENU_TYPE_ENUM.text]: '文本',
-  [MENU_TYPE_ENUM.upload]: '上传',
-  [MENU_TYPE_ENUM.drag]: '拖拽',
-  [MENU_TYPE_ENUM.scale]: '缩放',
-  [MENU_TYPE_ENUM.arrow]: '箭头',
-  [MENU_TYPE_ENUM.mosaic]: '马赛克',
+export enum LANG {
+  zh = 'zh',
+  en = 'en'
+}
+
+export const MENU_TYPE_TEXT: { [key: string]: {[LANG.zh]:string,[LANG.en]:string} } = {
+  [MENU_TYPE_ENUM.crop]: {[LANG.zh]:'裁剪',[LANG.en]:MENU_TYPE_ENUM.crop},
+  [MENU_TYPE_ENUM.history]: {[LANG.zh]:'历史记录',[LANG.en]:MENU_TYPE_ENUM.history},
+  [MENU_TYPE_ENUM.download]: {[LANG.zh]:'下载',[LANG.en]:MENU_TYPE_ENUM.download},
+  [MENU_TYPE_ENUM.draw]: {[LANG.zh]:'画笔',[LANG.en]:MENU_TYPE_ENUM.draw},
+  [MENU_TYPE_ENUM.flip]: {[LANG.zh]:'翻转',[LANG.en]:MENU_TYPE_ENUM.flip},
+  [MENU_TYPE_ENUM.reset]: {[LANG.zh]:'重置',[LANG.en]:MENU_TYPE_ENUM.reset},
+  [MENU_TYPE_ENUM.rotate]: {[LANG.zh]:'旋转',[LANG.en]:MENU_TYPE_ENUM.rotate},
+  [MENU_TYPE_ENUM.rect]: {[LANG.zh]:'矩形',[LANG.en]:MENU_TYPE_ENUM.rect},
+  [MENU_TYPE_ENUM.circle]: {[LANG.zh]:'圆形',[LANG.en]:MENU_TYPE_ENUM.circle},
+  [MENU_TYPE_ENUM.text]: {[LANG.zh]:'文本',[LANG.en]:MENU_TYPE_ENUM.text},
+  [MENU_TYPE_ENUM.upload]: {[LANG.zh]:'上传',[LANG.en]:MENU_TYPE_ENUM.upload},
+  [MENU_TYPE_ENUM.drag]: {[LANG.zh]:'拖拽',[LANG.en]:MENU_TYPE_ENUM.drag},
+  [MENU_TYPE_ENUM.scale]: {[LANG.zh]:'缩放',[LANG.en]:MENU_TYPE_ENUM.scale},
+  [MENU_TYPE_ENUM.arrow]: {[LANG.zh]:'箭头',[LANG.en]:MENU_TYPE_ENUM.arrow},
+  [MENU_TYPE_ENUM.mosaic]: {[LANG.zh]:'马赛克',[LANG.en]:MENU_TYPE_ENUM.mosaic},
+  [MENU_TYPE_ENUM.redo]:{[LANG.zh]:"前进",[LANG.en]:MENU_TYPE_ENUM.redo},
+  [MENU_TYPE_ENUM.undo]:{[LANG.zh]:"后退",[LANG.en]:MENU_TYPE_ENUM.undo}
 };
 
 export enum ACTION {
@@ -100,6 +109,7 @@ export interface IEditorProps {
   url?: string;
   style?: React.CSSProperties;
   menus?: MENU_TYPE_ENUM[];
+  lang?:LANG;
   onDownLoad?: (param: IDownloadBody) => void;
 }
 

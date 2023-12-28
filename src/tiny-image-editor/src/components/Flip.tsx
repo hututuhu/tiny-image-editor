@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React, { useContext, useEffect } from 'react';
 
-import { ACTION, FLIP_TYPE, MENU_TYPE_ENUM } from '../constants';
+import { ACTION, FLIP_TYPE, LANG, MENU_TYPE_ENUM, MENU_TYPE_TEXT } from '../constants';
 import { EditorContext } from '../util';
 import FlipPop from './setting/FlipPop';
 import Popover from './setting/Popover';
@@ -89,6 +89,9 @@ export const useFlip = () => {
 };
 
 export const Flip = () => {
+  const {
+    lang = LANG.en
+  } = useContext(EditorContext);
   const { handleFlipTrigger, handleFlipChange, currentMenu } = useFlip();
   return (
     <>
@@ -105,7 +108,7 @@ export const Flip = () => {
           open={currentMenu === MENU_TYPE_ENUM.flip}
           onChange={handleFlipChange}
         >
-          <Popover content="翻转" placement="top">
+          <Popover content={MENU_TYPE_TEXT.flip[lang]} placement="top">
             <i className="tie-image-editor_icon" onClick={handleFlipTrigger} />
           </Popover>
         </FlipPop>

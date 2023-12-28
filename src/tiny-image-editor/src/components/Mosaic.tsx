@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import React, { useCallback, useContext, useEffect, useRef } from 'react';
 
 import { fabric } from 'fabric';
-import { MENU_TYPE_ENUM, paintConfig } from '../constants';
+import { LANG, MENU_TYPE_ENUM, MENU_TYPE_TEXT, paintConfig } from '../constants';
 import { EditorContext } from '../util';
 import MosaicPop from './setting/MosaicPop';
 import Popover from './setting/Popover';
@@ -163,6 +163,9 @@ const useMosaic = () => {
  * 马赛克
  */
 const Mosaic = () => {
+  const {
+    lang = LANG.en
+  } = useContext(EditorContext);
   const { currentMenu, handleMosaicTrigger, handleSizeChange } = useMosaic();
   return (
     <>
@@ -179,7 +182,7 @@ const Mosaic = () => {
           open={currentMenu === MENU_TYPE_ENUM.mosaic}
           onChange={handleSizeChange}
         >
-          <Popover content="马赛克" placement="top">
+          <Popover content={MENU_TYPE_TEXT.mosaic[lang]} placement="top">
             <i
               className="tie-image-editor_icon"
               onClick={handleMosaicTrigger}

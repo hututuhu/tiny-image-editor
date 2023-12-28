@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { fabric } from 'fabric';
 import React from 'react';
 
-import { ACTION, MENU_TYPE_ENUM } from '../constants';
+import { ACTION, LANG, MENU_TYPE_ENUM, MENU_TYPE_TEXT } from '../constants';
 import { EditorContext } from '../util';
 import Popover from './setting/Popover';
 import RotatePop from './setting/RotatePop';
@@ -69,6 +69,9 @@ export const useRotate = () => {
 };
 
 export const Rotate = () => {
+  const {
+    lang = LANG.en
+  } = useContext(EditorContext);
   const { handleRotateTrigger, handleRotateChange, currentMenu } = useRotate();
   return (
     <>
@@ -85,7 +88,7 @@ export const Rotate = () => {
           open={currentMenu === MENU_TYPE_ENUM.rotate}
           onChange={handleRotateChange}
         >
-          <Popover content="旋转" placement="top">
+          <Popover content={MENU_TYPE_TEXT.rotate[lang]} placement="top">
             <i
               className="tie-image-editor_icon"
               onClick={handleRotateTrigger}

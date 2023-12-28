@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef } from 'react';
 
 import classNames from 'classnames';
-import { MENU_TYPE_ENUM, WORK_SPACE_ID } from '../constants';
+import { LANG, MENU_TYPE_ENUM, MENU_TYPE_TEXT, WORK_SPACE_ID } from '../constants';
 import { EditorContext } from '../util';
 import Popover from './setting/Popover';
 
@@ -171,6 +171,9 @@ export const useDrag = () => {
 };
 
 export const Drag = () => {
+  const {
+    lang = LANG.en
+  } = useContext(EditorContext);
   const { handleMoving, currentMenu } = useDrag();
   return (
     <div
@@ -182,7 +185,7 @@ export const Drag = () => {
         },
       )}
     >
-      <Popover content="抓取" placement="top">
+      <Popover content={MENU_TYPE_TEXT.drag[lang]} placement="top">
         <i
           className={classNames('tie-image-editor_icon')}
           onClick={handleMoving}

@@ -14,6 +14,7 @@ import React from 'react';
 import {
   ACTION,
   ACTION_TEXT,
+  LANG,
   MAX_HISTORY_LEN,
   MENU_TYPE_ENUM,
   MENU_TYPE_TEXT,
@@ -205,6 +206,10 @@ export const useHistory = () => {
 /** 历史 */
 export const History = forwardRef((props, ref) => {
   const {
+    lang = LANG.en
+  } = useContext(EditorContext);
+
+  const {
     history,
     currentId,
     renderNewCanvas,
@@ -268,7 +273,7 @@ export const History = forwardRef((props, ref) => {
                     {index + 2}.
                   </span>
                   {ACTION_TEXT[action]}
-                  {MENU_TYPE_TEXT[type]}
+                  {!!MENU_TYPE_TEXT[type] && MENU_TYPE_TEXT[type][lang]}
                   {id === currentId && (
                     <i className="tie-image-editor-history_pop-item-icon" />
                   )}
@@ -291,7 +296,7 @@ export const History = forwardRef((props, ref) => {
           },
         )}
       >
-        <Popover content="前进" placement="top">
+        <Popover content={MENU_TYPE_TEXT.redo[lang]} placement="top">
           <i
             className={classNames('tie-image-editor_icon')}
             onClick={
@@ -312,7 +317,7 @@ export const History = forwardRef((props, ref) => {
           },
         )}
       >
-        <Popover content="回退" placement="top">
+        <Popover content={MENU_TYPE_TEXT.undo[lang]} placement="top">
           <i
             className={classNames('tie-image-editor_icon')}
             onClick={!history.length || !currentId ? undefined : handleUndo}

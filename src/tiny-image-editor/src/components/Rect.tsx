@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { fabric } from 'fabric';
 import React, { useContext, useEffect, useRef } from 'react';
 
-import { ACTION, IPaintTypes, MENU_TYPE_ENUM, paintConfig } from '../constants';
+import { ACTION, IPaintTypes, LANG, MENU_TYPE_ENUM, MENU_TYPE_TEXT, paintConfig } from '../constants';
 import { EditorContext } from '../util';
 import Paint from './setting/Paint';
 import Popover from './setting/Popover';
@@ -155,6 +155,9 @@ export const useRect = () => {
 };
 
 export const Rect = () => {
+  const {
+    lang = LANG.en
+  } = useContext(EditorContext);
   const { handleDrawRect, handlePaintChange, currentMenu } = useRect();
   return (
     <>
@@ -171,7 +174,7 @@ export const Rect = () => {
           open={currentMenu === MENU_TYPE_ENUM.rect}
           onChange={handlePaintChange}
         >
-          <Popover content="矩形" placement="top">
+          <Popover content={MENU_TYPE_TEXT.rect[lang]} placement="top">
             <i
               className={classNames('tie-image-editor_icon')}
               onClick={handleDrawRect}
