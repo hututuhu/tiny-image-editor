@@ -14,7 +14,6 @@ const Arrow = fabric.util.createClass(fabric.Line, {
     this.callSuper('initialize', points, options);
   },
   _render(ctx: any) {
-    console.log('hehehe');
     this.callSuper('_render', ctx);
     ctx.save();
     const xDiff = this.x2 - this.x1;
