@@ -4,7 +4,13 @@ import React, { useCallback, useContext, useEffect, useRef } from 'react';
 // import { Popover } from '@casstime/bricks';
 import classNames from 'classnames';
 
-import { IPaintTypes, LANG, MENU_TYPE_ENUM, MENU_TYPE_TEXT, paintConfig } from '../constants';
+import {
+  IPaintTypes,
+  LANG,
+  MENU_TYPE_ENUM,
+  MENU_TYPE_TEXT,
+  paintConfig,
+} from '../constants';
 import { EditorContext } from '../util';
 import Paint from './setting/Paint';
 import Popover from './setting/Popover';
@@ -17,14 +23,23 @@ export const useText = () => {
     canvasIsRender,
     currentMenu,
   } = useContext(EditorContext);
+
   const paintConfigValue = useRef({
     color: paintConfig.colors[0],
     size: paintConfig.fontSizes[0],
   });
 
+  const isSelectingText = useRef(false);
+
   const mouseup = useCallback((o: any) => {
     const canvas = canvasInstanceRef.current;
-    if (!canvas) {
+
+    if (!canvas || o.target) {
+      return;
+    }
+
+    if (isSelectingText.current) {
+      isSelectingText.current = false;
       return;
     }
 
@@ -47,6 +62,8 @@ export const useText = () => {
 
     canvas.add(text);
     canvas.setActiveObject(text);
+    isSelectingText.current = true;
+
     canvas.renderAll();
   }, []);
 
@@ -101,9 +118,7 @@ export const useText = () => {
 };
 
 export const Text = () => {
-  const {
-    lang = LANG.en
-  } = useContext(EditorContext);
+  const { lang = LANG.en } = useContext(EditorContext);
   const { handleTextTrigger, handlePaintChange, currentMenu } = useText();
   return (
     <>

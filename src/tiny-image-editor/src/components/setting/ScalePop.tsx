@@ -51,7 +51,7 @@ const ScalePop = ({
       open={open}
       showArrow={false}
       trigger="click"
-      onOpenChange={onOpenChange}
+      // onOpenChange={onOpenChange}
     >
       <div>{children}</div>
     </Popover>

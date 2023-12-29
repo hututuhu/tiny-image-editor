@@ -1,8 +1,7 @@
-/* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import classNames from 'classnames';
-import { fabric } from 'fabric';
 import React, { useContext, useEffect, useRef } from 'react';
+
 import {
   ACTION,
   CURSOR,
@@ -16,42 +15,7 @@ import { EditorContext } from '../util';
 import Paint from './setting/Paint';
 import Popover from './setting/Popover';
 
-/** 自定义箭头 */
-(fabric as any).Arrow = fabric.util.createClass(fabric.Line, {
-  type: 'arrow',
-  superType: 'drawing',
-  initialize(points: any, options: any) {
-    if (!points) {
-      const { x1, x2, y1, y2 } = options;
-      points = [x1, y1, x2, y2];
-    }
-    options = options || {};
-    this.callSuper('initialize', points, options);
-  },
-  _render(ctx: any) {
-    this.callSuper('_render', ctx);
-    ctx.save();
-    const xDiff = this.x2 - this.x1;
-    const yDiff = this.y2 - this.y1;
-    const angle = Math.atan2(yDiff, xDiff);
-    ctx.translate((this.x2 - this.x1) / 2, (this.y2 - this.y1) / 2);
-    ctx.rotate(angle);
-    ctx.beginPath();
-    /** 箭头上的三角形大小 */
-    ctx.moveTo(this.strokeWidth * 2, 0);
-    ctx.lineTo(-this.strokeWidth * 2, this.strokeWidth * 2);
-    ctx.lineTo(-this.strokeWidth * 2, -this.strokeWidth * 2);
-    ctx.closePath();
-    ctx.fillStyle = this.stroke;
-    ctx.fill();
-    ctx.restore();
-  },
-});
-
-(fabric as any).Arrow.fromObject = (options: any, callback: any) => {
-  const { x1, x2, y1, y2 } = options;
-  return callback(new (fabric as any).Arrow([x1, y1, x2, y2], options));
-};
+import ArrowClass from '../helpers/Arrow';
 
 export const useArrow = () => {
   const {
@@ -82,14 +46,16 @@ export const useArrow = () => {
       if (
         canvas.getActiveObject() ||
         currentMenuRef.current !== MENU_TYPE_ENUM.arrow
-      )
+      ) {
         return;
+      }
 
       canvas.discardActiveObject();
       canvas.getObjects().forEach((obj: any) => {
         obj.selectable = false;
         obj.hasControls = false;
       });
+
       canvas.requestRenderAll();
       isDrawingLine.current = true;
       pointer.current = canvas.getPointer(o.e);
@@ -100,7 +66,7 @@ export const useArrow = () => {
         pointer.current.y,
       ];
 
-      const lineToDrawNew = new (fabric as any).Arrow(pointerPoints.current, {
+      const lineToDrawNew = new ArrowClass(pointerPoints.current, {
         strokeWidth: paintConfigValue.current.size,
         stroke: paintConfigValue.current.color,
         id: new Date().valueOf() + '_' + Math.random() * 4,
