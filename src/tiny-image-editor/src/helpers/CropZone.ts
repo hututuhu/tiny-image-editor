@@ -188,20 +188,20 @@ const Cropzone = fabric.util.createClass(
 
       // Outer rectangle
       // Numbers are +/-1 so that overlay edges don't get blurry.
-      ctx.moveTo(x[0] - 1, y[0] - 1);
-      ctx.lineTo(x[3] + 1, y[0] - 1);
-      ctx.lineTo(x[3] + 1, y[3] + 1);
-      ctx.lineTo(x[0] - 1, y[3] + 1);
-      ctx.lineTo(x[0] - 1, y[0] - 1);
-      ctx.closePath();
+      // ctx.moveTo(x[0] - 1, y[0] - 1);
+      // ctx.lineTo(x[3] + 1, y[0] - 1);
+      // ctx.lineTo(x[3] + 1, y[3] + 1);
+      // ctx.lineTo(x[0] - 1, y[3] + 1);
+      // ctx.lineTo(x[0] - 1, y[0] - 1);
+      // ctx.closePath();
 
       // Inner rectangle
-      // ctx.moveTo(x[1], y[1]);
-      // ctx.lineTo(x[1], y[2]);
-      // ctx.lineTo(x[2], y[2]);
-      // ctx.lineTo(x[2], y[1]);
-      // ctx.lineTo(x[1], y[1]);
-      // ctx.closePath();
+      ctx.moveTo(x[1], y[1]);
+      ctx.lineTo(x[1], y[2]);
+      ctx.lineTo(x[2], y[2]);
+      ctx.lineTo(x[2], y[1]);
+      ctx.lineTo(x[1], y[1]);
+      ctx.closePath();
 
       ctx.fill();
       ctx.restore();
