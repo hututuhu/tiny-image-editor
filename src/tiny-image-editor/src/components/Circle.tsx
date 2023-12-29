@@ -2,7 +2,15 @@
 import classNames from 'classnames';
 import { fabric } from 'fabric';
 import React, { useContext, useEffect, useRef } from 'react';
-import { ACTION, IPaintTypes, LANG, MENU_TYPE_ENUM, MENU_TYPE_TEXT, paintConfig } from '../constants';
+import {
+  ACTION,
+  CURSOR,
+  IPaintTypes,
+  LANG,
+  MENU_TYPE_ENUM,
+  MENU_TYPE_TEXT,
+  paintConfig,
+} from '../constants';
 import { EditorContext } from '../util';
 import Paint from './setting/Paint';
 import Popover from './setting/Popover';
@@ -59,10 +67,20 @@ export const useCircle = () => {
 
     canvas.on('mouse:move', function (o: any) {
       if (
+        !canvas.getActiveObject() &&
+        currentMenuRef.current === MENU_TYPE_ENUM.circle
+      ) {
+        canvas.setCursor(CURSOR.crosshair);
+      }
+
+      if (
         !startCircle.current ||
         currentMenuRef.current !== MENU_TYPE_ENUM.circle
-      )
+      ) {
+        canvas.renderAll();
         return;
+      }
+
       let pointer = canvas.getPointer(o.e);
       let radius =
         Math.max(
@@ -153,9 +171,7 @@ export const useCircle = () => {
 
 /** 圆形 */
 export const Circle = () => {
-  const {
-    lang = LANG.en
-  } = useContext(EditorContext);
+  const { lang = LANG.en } = useContext(EditorContext);
   const { handleDrawCircle, handlePaintChange, currentMenu } = useCircle();
   return (
     <>

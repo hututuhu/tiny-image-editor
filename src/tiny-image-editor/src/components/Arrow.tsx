@@ -3,7 +3,15 @@
 import classNames from 'classnames';
 import { fabric } from 'fabric';
 import React, { useContext, useEffect, useRef } from 'react';
-import { ACTION, IPaintTypes, LANG, MENU_TYPE_ENUM, MENU_TYPE_TEXT, paintConfig } from '../constants';
+import {
+  ACTION,
+  CURSOR,
+  IPaintTypes,
+  LANG,
+  MENU_TYPE_ENUM,
+  MENU_TYPE_TEXT,
+  paintConfig,
+} from '../constants';
 import { EditorContext } from '../util';
 import Paint from './setting/Paint';
 import Popover from './setting/Popover';
@@ -107,12 +115,21 @@ export const useArrow = () => {
 
     canvas.on('mouse:move', (o: any) => {
       if (
+        !canvas.getActiveObject() &&
+        currentMenuRef.current === MENU_TYPE_ENUM.rect
+      ) {
+        canvas.setCursor(CURSOR.crosshair);
+      }
+
+      if (
         canvas.getActiveObject() ||
         currentMenuRef.current !== MENU_TYPE_ENUM.arrow ||
         !isDrawingLine.current ||
         !lineToDraw.current
-      )
+      ) {
+        canvas.renderAll();
         return;
+      }
 
       pointer.current = canvas.getPointer(o.e);
 
@@ -212,9 +229,7 @@ export const useArrow = () => {
 
 /** 箭头 */
 export const Arrow = () => {
-  const {
-    lang = LANG.en
-  } = useContext(EditorContext);
+  const { lang = LANG.en } = useContext(EditorContext);
   const { handleArrowTrigger, handlePaintChange, currentMenu } = useArrow();
   return (
     <div

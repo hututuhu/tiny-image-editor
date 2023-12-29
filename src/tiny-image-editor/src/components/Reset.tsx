@@ -5,13 +5,8 @@ import { EditorContext } from '../util';
 import Popover from './setting/Popover';
 
 const useReset = () => {
-  const {
-    setCurrentMenu,
-    initCanvasJson,
-    currentMenuRef,
-    canvasInstanceRef,
-    historyRef,
-  } = useContext(EditorContext);
+  const { setCurrentMenu, currentMenuRef, canvasInstanceRef, historyRef } =
+    useContext(EditorContext);
 
   const handleReset = () => {
     if (currentMenuRef.current !== MENU_TYPE_ENUM.reset) {
@@ -23,18 +18,26 @@ const useReset = () => {
       return;
     }
 
-    /** 先清空，再重新设置背景 */
-    canvas.clear();
+    /** 清空除了背景之外的图形 */
+    canvas.getObjects().forEach((o: any) => {
+      if (o !== canvas.backgroundImage) {
+        canvas.remove(o);
+      }
+    });
 
     /** 将缩放也重置 */
     const center = canvas.getCenter();
     canvas.zoomToPoint(new fabric.Point(center.left, center.top), 1);
-    /** 设置背景图 */
-    canvas.clear().renderAll();
-    canvas.loadFromJSON(JSON.parse(initCanvasJson.current), () => {
-      canvas.renderAll();
-      historyRef.current.updateCanvasState(ACTION.add);
-    });
+
+    /** 将画布拖回初始值位置 */
+    const viewportTransform = canvas.viewportTransform;
+    viewportTransform[4] = 0;
+    viewportTransform[5] = 0;
+    canvas.setViewportTransform(viewportTransform);
+    canvas.renderAll();
+
+    /** 保存历史 */
+    historyRef.current.updateCanvasState(ACTION.add);
   };
 
   return { handleReset };
@@ -42,9 +45,7 @@ const useReset = () => {
 
 /** 重置 */
 export const Reset = () => {
-  const {
-    lang = LANG.en
-  } = useContext(EditorContext);
+  const { lang = LANG.en } = useContext(EditorContext);
   const { handleReset } = useReset();
   return (
     <div className="tie-image-editor_tool-item tie-image-editor_tool-reset">

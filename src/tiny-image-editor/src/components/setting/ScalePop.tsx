@@ -10,6 +10,7 @@ interface IProps {
   onScaleUp?: () => void;
   onScaleDown?: () => void;
   onReset?: () => void;
+  onOpenChange?: (open: boolean) => void;
 }
 
 /** 缩放参数 */
@@ -20,6 +21,7 @@ const ScalePop = ({
   onScaleUp,
   onScaleDown,
   onReset,
+  onOpenChange,
 }: IProps) => {
   return (
     <Popover
@@ -48,6 +50,8 @@ const ScalePop = ({
       placement="bottom-end"
       open={open}
       showArrow={false}
+      trigger="click"
+      onOpenChange={onOpenChange}
     >
       <div>{children}</div>
     </Popover>

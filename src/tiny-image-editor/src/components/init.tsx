@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import {
   ACTION,
+  CURSOR,
   IDownloadBody,
   MENU_TYPE_ENUM,
   WORK_SPACE_ID,
@@ -56,16 +57,41 @@ export const useInit = ({ url }: IProps) => {
 
   /** 更新菜单 */
   const setCurrentMenu = (newMenu: MENU_TYPE_ENUM) => {
+    console.log('setCurrentMenu', newMenu);
     _setCurrentMenu(newMenu);
     currentMenuRef.current = newMenu;
-    /** 清空自由画状态 */
-    if (
-      ![MENU_TYPE_ENUM.draw, MENU_TYPE_ENUM.mosaic].includes(newMenu) &&
-      canvasInstanceRef.current &&
-      canvasInstanceRef.current.isDrawingMode
-    ) {
-      canvasInstanceRef.current.isDrawingMode = false;
+
+    const canvas = canvasInstanceRef.current;
+
+    if (!canvas) {
+      return;
     }
+
+    /** 清空自由画状态 */
+    if (![MENU_TYPE_ENUM.draw, MENU_TYPE_ENUM.mosaic].includes(newMenu)) {
+      canvas.isDrawingMode = false;
+    }
+
+    /** 矩形 */
+    if (
+      [
+        MENU_TYPE_ENUM.rect,
+        MENU_TYPE_ENUM.circle,
+        MENU_TYPE_ENUM.arrow,
+      ].includes(newMenu)
+    ) {
+      canvas.setCursor(CURSOR.crosshair);
+    } else if (
+      [
+        MENU_TYPE_ENUM.rect,
+        MENU_TYPE_ENUM.circle,
+        MENU_TYPE_ENUM.arrow,
+      ].includes(currentMenuRef.current)
+    ) {
+      canvas.setCursor(CURSOR.default);
+    }
+
+    canvas.renderAll();
   };
 
   /** 初始化画布 */

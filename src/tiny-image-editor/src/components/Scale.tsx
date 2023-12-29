@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { fabric } from 'fabric';
-import React, { useContext, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
 // import { Popover } from '@casstime/bricks';
 import classNames from 'classnames';
 
@@ -96,27 +96,29 @@ export const useScale = () => {
     setZoom(1);
   };
 
+  const handleOpenChange = useCallback((open: boolean) => {
+    setCurrentMenu(!open ? MENU_TYPE_ENUM.default : MENU_TYPE_ENUM.scale);
+  }, []);
+
   return {
-    currentMenu,
     zoom,
     handleScaleUp,
     handleScaleDown,
     handleScaleTrigger,
     handleReset,
+    handleOpenChange,
   };
 };
 
 export const Scale = () => {
-  const {
-    lang = LANG.en
-  } = useContext(EditorContext);
+  const { lang = LANG.en, currentMenu } = useContext(EditorContext);
   const {
     zoom,
-    currentMenu,
     handleScaleDown,
     handleScaleUp,
     handleScaleTrigger,
     handleReset,
+    handleOpenChange,
   } = useScale();
   return (
     <>
@@ -135,11 +137,12 @@ export const Scale = () => {
           onScaleDown={handleScaleDown}
           onScaleUp={handleScaleUp}
           onReset={handleReset}
+          onOpenChange={handleOpenChange}
         >
           <Popover content={MENU_TYPE_TEXT.scale[lang]} placement="top">
             <i
               className={classNames('tie-image-editor_icon')}
-              onClick={handleScaleTrigger}
+              // onClick={handleScaleTrigger}
             />
           </Popover>
         </ScalePop>

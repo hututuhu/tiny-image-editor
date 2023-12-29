@@ -3,7 +3,15 @@ import classNames from 'classnames';
 import { fabric } from 'fabric';
 import React, { useContext, useEffect, useRef } from 'react';
 
-import { ACTION, IPaintTypes, LANG, MENU_TYPE_ENUM, MENU_TYPE_TEXT, paintConfig } from '../constants';
+import {
+  ACTION,
+  CURSOR,
+  IPaintTypes,
+  LANG,
+  MENU_TYPE_ENUM,
+  MENU_TYPE_TEXT,
+  paintConfig,
+} from '../constants';
 import { EditorContext } from '../util';
 import Paint from './setting/Paint';
 import Popover from './setting/Popover';
@@ -64,10 +72,18 @@ export const useRect = () => {
 
     canvas.on('mouse:move', function (o: any) {
       if (
+        !canvas.getActiveObject() &&
+        currentMenuRef.current === MENU_TYPE_ENUM.rect
+      ) {
+        canvas.setCursor(CURSOR.crosshair);
+      }
+
+      if (
         !startRect.current ||
         !currentRect.current ||
         currentMenuRef.current !== MENU_TYPE_ENUM.rect
       ) {
+        canvas.renderAll();
         return;
       }
 
@@ -86,7 +102,7 @@ export const useRect = () => {
       currentRect.current.set({
         height: Math.abs(rectPoint.current.y - pointer.y),
       });
-
+      canvas.setCursor(CURSOR.crosshair);
       canvas.renderAll();
     });
 
@@ -125,11 +141,13 @@ export const useRect = () => {
   }, [canvasInstanceRef, canvasIsRender]);
 
   const handleDrawRect = () => {
-    setCurrentMenu(
+    const newMenu =
       currentMenuRef.current === MENU_TYPE_ENUM.rect
         ? MENU_TYPE_ENUM.default
-        : MENU_TYPE_ENUM.rect,
-    );
+        : MENU_TYPE_ENUM.rect;
+    console.log('currentMenuRef.current', newMenu, currentMenuRef.current);
+
+    setCurrentMenu(newMenu);
   };
 
   const handlePaintChange = (type: IPaintTypes, value: number | string) => {
@@ -155,9 +173,7 @@ export const useRect = () => {
 };
 
 export const Rect = () => {
-  const {
-    lang = LANG.en
-  } = useContext(EditorContext);
+  const { lang = LANG.en } = useContext(EditorContext);
   const { handleDrawRect, handlePaintChange, currentMenu } = useRect();
   return (
     <>
