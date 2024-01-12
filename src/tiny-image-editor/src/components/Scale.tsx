@@ -138,6 +138,7 @@ export const Scale = () => {
           onScaleUp={handleScaleUp}
           onReset={handleReset}
           onOpenChange={handleOpenChange}
+          resetText={MENU_TYPE_TEXT.reset[lang]}
         >
           <Popover content={MENU_TYPE_TEXT.scale[lang]} placement="top">
             <i

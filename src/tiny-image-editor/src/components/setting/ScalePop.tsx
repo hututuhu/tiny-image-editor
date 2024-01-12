@@ -7,6 +7,7 @@ interface IProps {
   children: React.ReactNode;
   open?: boolean;
   zoom?: number;
+  resetText?:string;
   onScaleUp?: () => void;
   onScaleDown?: () => void;
   onReset?: () => void;
@@ -18,6 +19,7 @@ const ScalePop = ({
   children,
   open = false,
   zoom = 1,
+  resetText="",
   onScaleUp,
   onScaleDown,
   onReset,
@@ -44,7 +46,7 @@ const ScalePop = ({
               />
             </div>
           </div>
-          <button onClick={onReset}>重置</button>
+          <button onClick={onReset}>{resetText}</button>
         </div>
       }
       placement="bottom-end"
