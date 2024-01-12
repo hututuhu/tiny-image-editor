@@ -205,9 +205,7 @@ export const useHistory = () => {
 
 /** 历史 */
 export const History = forwardRef((props, ref) => {
-  const {
-    lang = LANG.en
-  } = useContext(EditorContext);
+  const { lang = LANG.en } = useContext(EditorContext);
 
   const {
     history,
@@ -238,7 +236,7 @@ export const History = forwardRef((props, ref) => {
               {!!history.length && (
                 <>
                   <div className="tie-image-editor-history_pop-title">
-                    历史
+                    {ACTION_TEXT.title[lang]}
                     <span className="tie-image-editor-history_pop-len">
                       （{history.length}）
                     </span>
@@ -252,14 +250,14 @@ export const History = forwardRef((props, ref) => {
                     <span className="tie-image-editor-history_pop-item-num">
                       1.
                     </span>
-                    初始化
+                    {ACTION_TEXT.init[lang]}
                     {!currentId && (
                       <i className="tie-image-editor-history_pop-item-icon" />
                     )}
                   </div>
                 </>
               )}
-              {!history.length && <span>暂无历史</span>}
+              {!history.length && <span>{ACTION_TEXT.placeholder[lang]}</span>}
               {history.map(({ action = '', id, type }, index) => (
                 <div
                   key={id}
@@ -272,7 +270,7 @@ export const History = forwardRef((props, ref) => {
                   <span className="tie-image-editor-history_pop-item-num">
                     {index + 2}.
                   </span>
-                  {ACTION_TEXT[action]}
+                  {!!ACTION_TEXT[action] && ACTION_TEXT[action][lang]}{' '}
                   {!!MENU_TYPE_TEXT[type] && MENU_TYPE_TEXT[type][lang]}
                   {id === currentId && (
                     <i className="tie-image-editor-history_pop-item-icon" />

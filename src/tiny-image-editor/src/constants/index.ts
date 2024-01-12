@@ -114,10 +114,21 @@ export enum ACTION {
   delete = 'delete',
 }
 
-export const ACTION_TEXT: { [key: string]: string } = {
-  [ACTION.add]: '添加',
-  [ACTION.modified]: '修改',
-  [ACTION.delete]: '删除',
+export const ACTION_TEXT: {
+  [key: string]: { [LANG.zh]: string; [LANG.en]: string };
+} = {
+  [ACTION.add]: {
+    [LANG.zh]: '添加',
+    [LANG.en]: ACTION.add,
+  },
+  [ACTION.modified]: {
+    [LANG.zh]: '修改',
+    [LANG.en]: ACTION.modified,
+  },
+  [ACTION.delete]: { [LANG.zh]: '删除', [LANG.en]: ACTION.delete },
+  placeholder: { [LANG.zh]: '暂无历史', [LANG.en]: 'no logging' },
+  init: { [LANG.zh]: '初始化', [LANG.en]: 'init' },
+  title: { [LANG.zh]: '历史', [LANG.en]: 'history' },
 };
 
 export enum FLIP_TYPE {
