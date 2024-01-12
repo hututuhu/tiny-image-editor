@@ -142,7 +142,7 @@ export const Scale = () => {
           <Popover content={MENU_TYPE_TEXT.scale[lang]} placement="top">
             <i
               className={classNames('tie-image-editor_icon')}
-              // onClick={handleScaleTrigger}
+              onClick={handleScaleTrigger}
             />
           </Popover>
         </ScalePop>
