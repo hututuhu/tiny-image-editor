@@ -13,7 +13,6 @@ export const useScale = () => {
   const {
     canvasInstanceRef,
     canvasIsRender,
-    currentMenu,
     currentMenuRef,
     zoom,
     setZoom,
@@ -97,7 +96,12 @@ export const useScale = () => {
   };
 
   const handleOpenChange = useCallback((open: boolean) => {
-    setCurrentMenu(!open ? MENU_TYPE_ENUM.default : MENU_TYPE_ENUM.scale);
+    setTimeout(() => {
+      /** 当前是缩放模式，点击其他区域才需要关闭缩放 */
+      if(MENU_TYPE_ENUM.scale === currentMenuRef.current){
+        setCurrentMenu(!open ? MENU_TYPE_ENUM.default : MENU_TYPE_ENUM.scale);
+      }
+    });
   }, []);
 
   return {
@@ -139,6 +143,7 @@ export const Scale = () => {
           onReset={handleReset}
           onOpenChange={handleOpenChange}
           resetText={MENU_TYPE_TEXT.reset[lang]}
+          key={MENU_TYPE_ENUM.scale}
         >
           <Popover content={MENU_TYPE_TEXT.scale[lang]} placement="top">
             <i

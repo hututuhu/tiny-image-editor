@@ -57,7 +57,6 @@ export const useInit = ({ url }: IProps) => {
 
   /** 更新菜单 */
   const setCurrentMenu = (newMenu: MENU_TYPE_ENUM) => {
-    console.log('setCurrentMenu', newMenu);
     _setCurrentMenu(newMenu);
     currentMenuRef.current = newMenu;
 
